@@ -1,6 +1,6 @@
-import React, {  useRef, useState, useEffect  } from 'react'
+import React, {  useRef, useState  } from 'react'
 import qrcode from 'qrcode-generator'
-import Badge from '/Badge.js'
+import Badge from './Badge.js'
 
 const Form = () => {
     const nameRef = useRef()
@@ -10,15 +10,6 @@ const Form = () => {
     const [error, setError] = useState()
     const [qrsrc, setqrsrc] = useState(null)
     const [active, setActive] = useState(false)
-
-    useEffect(() => {
-        if(qrsrc !== null){
-            document.getElementById("qrPlaceholder").innerHTML = qrsrc.createImgTag()
-        }
-        else{
-            document.getElementById("qrPlaceholder").innerHTML = ""
-        }
-    }, [qrsrc])
 
 
     const  handler = (e) =>{
@@ -49,7 +40,7 @@ const Form = () => {
         qr.addData("Name: " + nameRef.current.value + "\nEmail: " + emailRef.current.value + "\nTwitter: " + twitRef.current.value + "\nGitHub: " + gitRef.current.value)
         qr.make()
 
-        setqrsrc(qr)
+        setqrsrc(qr.createImgTag)
         setActive(true)
 
         
@@ -68,19 +59,24 @@ const Form = () => {
     }
 
     return (
-        <div className = "inputform">
-            <form onSubmit = {  handler  }>
-                <label>Name*</label><input ref= { nameRef } type="text" required></input>
-                <label>Email*</label><input ref = {  emailRef  } type="text" required></input>
-                <label>Twitter</label><input  ref = {  twitRef  } type="text"></input>
-                <label>GitHub</label><input ref = {  gitRef  } type="text"></input>
-                <input type="submit" value="Create"/>
-                <input type="button" onClick = { eraseData } value ="Cancel"></input>
-                <h2>* indicates required field</h2>
-                {error !== "" && <h2 className="errortxt">{error}</h2>}
-                <Badge />
-
-            </form>
+        <div>
+            <div className = "inputform">
+                <form onSubmit = {  handler  }>
+                    <label>Name*</label><input ref= { nameRef } type="text" required></input>
+                    <label>Email*</label><input ref = {  emailRef  } type="text" required></input>
+                    <label>Twitter</label><input  ref = {  twitRef  } type="text"></input>
+                    <label>GitHub</label><input ref = {  gitRef  } type="text"></input>
+                    <input disabled={active} type="submit" value="Create"/>
+                    <input type="button" onClick = { eraseData } value ="Cancel"></input>
+                    <h2>* indicates required field</h2>
+                    {error !== "" && <h2 className="errortxt">{error}</h2>}
+                </form>
+            </div>
+            {active && <Badge qrsrc={  qrsrc  } name= {  nameRef.current.value  } 
+                        email= { emailRef.current.value }  
+                        twitter= { twitRef.current.value } 
+                        github = { gitRef.current.value }
+            />}
         </div>
     )
 }
