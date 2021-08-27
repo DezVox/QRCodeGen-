@@ -36,3 +36,19 @@
     transform: rotate(360deg);
   }
 }
+
+.inputform{
+  margin-top: 25vh;
+  display: block;
+  width: 10vw;
+  margin-left: 43vw;
+  padding: 2vh;
+
+  background-color:lightblue;
+  border-radius: 1vh;
+}
+
+
+.errortxt{
+  color: red;
+}
