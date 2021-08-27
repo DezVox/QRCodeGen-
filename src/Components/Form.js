@@ -1,4 +1,6 @@
-import React, {  useRef, useState  } from 'react'
+import React, {  useRef, useState, useEffect  } from 'react'
+import qrcode from 'qrcode-generator'
+import Badge from '/Badge.js'
 
 const Form = () => {
     const nameRef = useRef()
@@ -6,6 +8,17 @@ const Form = () => {
     const twitRef = useRef()
     const gitRef = useRef()
     const [error, setError] = useState()
+    const [qrsrc, setqrsrc] = useState(null)
+    const [active, setActive] = useState(false)
+
+    useEffect(() => {
+        if(qrsrc !== null){
+            document.getElementById("qrPlaceholder").innerHTML = qrsrc.createImgTag()
+        }
+        else{
+            document.getElementById("qrPlaceholder").innerHTML = ""
+        }
+    }, [qrsrc])
 
 
     const  handler = (e) =>{
@@ -32,18 +45,25 @@ const Form = () => {
             return
         }
 
-        // Clear text fields
-        Array.from(document.querySelectorAll("input[type=text]")).forEach(
-            input => (input.value = "")
-        )
+        let qr = qrcode(10, "L")
+        qr.addData("Name: " + nameRef.current.value + "\nEmail: " + emailRef.current.value + "\nTwitter: " + twitRef.current.value + "\nGitHub: " + gitRef.current.value)
+        qr.make()
+
+        setqrsrc(qr)
+        setActive(true)
+
+        
         setError("")
     }
 
     const eraseData = () =>{
+        // Clear text fields
         Array.from(document.querySelectorAll("input[type=text]")).forEach(
             input => (input.value = "")
         )
         console.log("Data erased!")
+        setqrsrc(null)
+        setActive(false)
         setError("")
     }
 
@@ -58,6 +78,8 @@ const Form = () => {
                 <input type="button" onClick = { eraseData } value ="Cancel"></input>
                 <h2>* indicates required field</h2>
                 {error !== "" && <h2 className="errortxt">{error}</h2>}
+                <Badge />
+
             </form>
         </div>
     )
