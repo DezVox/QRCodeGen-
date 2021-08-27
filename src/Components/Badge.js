@@ -1,4 +1,7 @@
 import React, {  useEffect  } from 'react'
+import {  FaGithub, FaTwitter  } from "react-icons/fa"
+import {  AiOutlineMail  } from "react-icons/ai"
+import {  IoPersonCircle  } from "react-icons/io5"
 
 const Badge = ({ qrsrc, name, email, twitter, github }) => {
     useEffect(() => {
@@ -7,8 +10,11 @@ const Badge = ({ qrsrc, name, email, twitter, github }) => {
     
     return (
         <div className="BadgeBox">
-            <h3>{email}</h3>
-            <div id="qrPlaceholder"></div>
+            <div className="Placeholder" id="qrPlaceholder"></div>
+            <h4 className="infotxt"><IoPersonCircle/>Name: {name}</h4>
+            <h4 className="infotxt"><AiOutlineMail/>Email: {email}</h4>
+            <h4 className="infotxt"><FaTwitter/>Twitter: {twitter}</h4>
+            <h4 className="infotxt"><FaGithub/>Github: {github}</h4>
         </div>
     )
 }

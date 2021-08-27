@@ -1,10 +1,9 @@
 .App {
   text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+  background-color: #c2ceca;
+  height:100vh;
+  width:100vw;
+  position:absolute;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -13,20 +12,6 @@
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
 
 @keyframes App-logo-spin {
   from {
@@ -41,14 +26,41 @@
   margin-top: 25vh;
   display: block;
   width: 10vw;
-  margin-left: 43vw;
+  margin-left: 35vw;
   padding: 2vh;
 
-  background-color:lightblue;
+  background-color:#7395AE;
   border-radius: 1vh;
 }
 
 
 .errortxt{
   color: red;
+}
+
+.BadgeBox{
+  position: relative;
+  right: -50vw;
+  background-color:#7395AE;
+  justify-content: center;
+  align-content: center;
+  width:15vw;
+  padding:1vh;
+  margin-top: -40vh;
+  border-radius: 1vh;
+}
+
+.infotxt{
+  border: 1px solid;
+  background-color: #557a9563;
+  border-radius: 1vh;
+  border-color: #557A95;
+}
+
+.Placeholder{
+  background-color: #557a9563;
+  padding: 2vh;
+  border: 1px solid;
+  border-color: #557A95;
+  border-radius: 1vh;
 }

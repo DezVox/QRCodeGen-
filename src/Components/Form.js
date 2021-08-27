@@ -36,7 +36,7 @@ const Form = () => {
             return
         }
 
-        let qr = qrcode(10, "L")
+        let qr = qrcode(0, "L")
         qr.addData("Name: " + nameRef.current.value + "\nEmail: " + emailRef.current.value + "\nTwitter: " + twitRef.current.value + "\nGitHub: " + gitRef.current.value)
         qr.make()
 
@@ -68,8 +68,8 @@ const Form = () => {
                     <label>GitHub</label><input ref = {  gitRef  } type="text"></input>
                     <input disabled={active} type="submit" value="Create"/>
                     <input type="button" onClick = { eraseData } value ="Cancel"></input>
-                    <h2>* indicates required field</h2>
-                    {error !== "" && <h2 className="errortxt">{error}</h2>}
+                    <h4>* indicates required field</h4>
+                    {error !== "" && <h4 className="errortxt">{error}</h4>}
                 </form>
             </div>
             {active && <Badge qrsrc={  qrsrc  } name= {  nameRef.current.value  } 
