@@ -13,8 +13,8 @@ const Badge = ({ qrsrc, name, email, twitter, github }) => {
             <div className="Placeholder" id="qrPlaceholder"></div>
             <h4 className="infotxt"><IoPersonCircle/>Name: {name}</h4>
             <h4 className="infotxt"><AiOutlineMail/>Email: {email}</h4>
-            <h4 className="infotxt"><FaTwitter/>Twitter: {twitter}</h4>
-            <h4 className="infotxt"><FaGithub/>Github: {github}</h4>
+            {twitter !== "@" && <h4 className="infotxt"><FaTwitter/>Twitter: {twitter}</h4>}
+            {github !== "" &&<h4 className="infotxt"><FaGithub/>Github: {github}</h4>}
         </div>
     )
 }
